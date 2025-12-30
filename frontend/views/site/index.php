@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\Html;
+
 /** @var yii\web\View $this */
 
 $this->title = 'iGOV';
@@ -10,66 +12,121 @@ $this->title = 'iGOV';
 
         <!-- Scrollable posts container -->
         <div class="overflow-auto">
-            <?php for ($i = 1; $i <= 20; $i++): ?>
+            <?php foreach ($posts as $post): ?>
                 <div class="card mb-5 shadow-sm">
 
                     <!-- Post Image -->
                     <img
-                        src="https://picsum.photos/800/400?random=<?= $i ?>"
+                        src="<?= Yii::getAlias('@web') . $post->img_path ?>"
                         class="card-img-top"
-                        alt="Post image <?= $i ?>">
+                        alt="Post image">
 
-                    <!-- Post Content -->
+                    <!-- Post Content (3 lines + ellipsis) -->
                     <div class="card-body">
-                        <p class="card-text text-muted">
-                            This is a sample post description. It looks clean, readable,
-                            and well-spaced for better UX.
+                        <p class="card-text text-muted post-desc">
+                            <?= Html::encode($post->desc) ?>
                         </p>
                     </div>
 
                     <hr>
 
+                    <!-- Location + Money -->
+                    <?php
+                    [$lat, $lng] = explode(',', $post->address_coords);
+                    $modalId = 'mapModal-' . $post->id;
+                    $mapId   = 'map-' . $post->id;
+                    ?>
+
                     <div class="d-flex gap-2 mx-3">
-                        <button class="btn btn-outline-danger btn-sm flex-fill">
-                            📍 Мекен - жайы
+                        <button
+                            class="btn btn-outline-danger btn-sm flex-fill"
+                            data-bs-toggle="modal"
+                            data-bs-target="#<?= $modalId ?>">
+                            📍 Мекен-жайы
                         </button>
+
+                        <!-- Map Modal -->
+                        <div class="modal fade" id="<?= $modalId ?>" tabindex="-1">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Мекен-жайы</h5>
+                                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <div class="modal-body p-0">
+                                        <div id="<?= $mapId ?>" style="height:400px;"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            document.getElementById('<?= $modalId ?>').addEventListener('shown.bs.modal', function() {
+
+                                if (this.dataset.mapLoaded) return;
+                                this.dataset.mapLoaded = "1";
+
+                                const lat = <?= (float)$lat ?>;
+                                const lng = <?= (float)$lng ?>;
+
+                                const map = L.map('<?= $mapId ?>').setView([lat, lng], 15);
+
+                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    attribution: '&copy; OpenStreetMap contributors'
+                                }).addTo(map);
+
+                                L.marker([lat, lng]).addTo(map);
+                            });
+                        </script>
+
                         <button class="btn btn-outline-success btn-sm flex-fill">
-                            💵 ₸10,000 жиналды
+                            💵 ₸<?= number_format($post->money, 0, '.', ' ') ?> жиналды
                         </button>
                     </div>
 
                     <hr>
 
+                    <!-- Action buttons -->
                     <div class="d-flex gap-2 mb-1 mx-3">
-                        <button class="btn btn-outline-warning btn flex-fill">
+                        <a
+                            href="<?= Html::encode($post->whatsapp_group) ?>"
+                            target="_blank"
+                            class="btn btn-outline-warning flex-fill">
                             ✋ Мен жасаймын!
-                        </button>
-                        <button class="btn btn-outline-success btn flex-fill">
-                            💵 Қолдау
-                        </button>
+                        </a>
 
+                        <a
+                            href="<?= Html::encode($post->whatsapp_group) ?>"
+                            target="_blank"
+                            class="btn btn-outline-success flex-fill">
+                            💵 Қолдау
+                        </a>
                     </div>
+
                     <div class="d-flex gap-2 mb-3 mx-3">
                         <button
                             class="btn btn-outline-primary flex-fill"
-                            onclick="sharePost()">
+                            onclick="sharePost<?= $post->id ?>()">
                             🔗 Бөлісу
                         </button>
                     </div>
 
-                    <script>
-                        function sharePost() {
-                            const url = window.location.href;
-
-                            window.open(
-                                `https://wa.me/?text=${encodeURIComponent(url)}`,
-                                '_blank'
-                            );
-                        }
-                    </script>
-
                 </div>
-            <?php endfor; ?>
+
+                <!-- Share function (unique per post) -->
+                <script>
+                    function sharePost<?= $post->id ?>() {
+                        const url = "<?= Yii::$app->request->absoluteUrl ?>post/view?id=<?= $post->id ?>";
+                        window.open(
+                            `https://wa.me/?text=${encodeURIComponent(url)}`,
+                            '_blank'
+                        );
+                    }
+                </script>
+
+            <?php endforeach; ?>
 
         </div>
 

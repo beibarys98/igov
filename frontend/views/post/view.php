@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\bootstrap5\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var common\models\Post $model */
@@ -9,7 +10,7 @@ $this->title = 'iGOV';
 ?>
 <div class="d-flex justify-content-center align-items-center vh-90 mt-3">
 
-    <div class="card p-3" style="max-width: 25rem;">
+    <div class="card p-3" style="width: 25rem;">
 
         <!-- Post Image -->
         <img
@@ -32,7 +33,7 @@ $this->title = 'iGOV';
                 class="btn btn-outline-danger btn-sm flex-fill"
                 data-bs-toggle="modal"
                 data-bs-target="#mapModal">
-                📍 Мекен-жайы
+                📍 Мекен - жайы
             </button>
 
 
@@ -54,11 +55,12 @@ $this->title = 'iGOV';
             </a>
 
             <a
-                href="<?= Html::encode($model->whatsapp_group) ?>"
-                target="_blank"
+                href="<?= \yii\helpers\Url::to(['post/donate', 'id' => $model->id]) ?>"
                 class="btn btn-outline-success flex-fill">
                 💵 Қолдау
             </a>
+
+
         </div>
 
         <div class="d-flex gap-2 mb-3 mx-3">

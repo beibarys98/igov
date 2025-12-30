@@ -39,7 +39,7 @@ class Post extends \yii\db\ActiveRecord
             [['address_coords', 'whatsapp_group'], 'default', 'value' => null],
             [['desc', 'whatsapp_group', 'money'], 'required', 'message' => 'Толтырыңыз!'],
             [['desc'], 'string'],
-            [['money'], 'number', 'message' => 'Мысалы: 1000'],
+            [['money'], 'number', 'message' => 'Мысалы: 1000', 'min' => 100, 'tooSmall' => 'Ең азы 100 тг!'],
             [['created_at', 'updated_at'], 'safe'],
             [['img_path', 'whatsapp_group'], 'string', 'max' => 255],
             [['address_coords'], 'string', 'max' => 100],

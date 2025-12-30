@@ -57,8 +57,10 @@ class PostController extends Controller
      */
     public function actionView($id)
     {
+        $donation = new \common\models\Donation();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'donation' => $donation,
         ]);
     }
 
@@ -150,5 +152,21 @@ class PostController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionDonate($id)
+    {
+        $post = $this->findModel($id); // your Post model
+        $donation = new \common\models\Donation();
+
+        if ($donation->load(\Yii::$app->request->post()) && $donation->save(false)) {
+            // Redirect to the post's WhatsApp group after donation
+            return $this->redirect($post->whatsapp_group);
+        }
+
+        return $this->render('donate', [
+            'post' => $post,
+            'donation' => $donation,
+        ]);
     }
 }
