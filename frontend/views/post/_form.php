@@ -51,7 +51,14 @@ use yii\bootstrap5\ActiveForm;
 
     <?= $form->field($model, 'whatsapp_group')->textarea(['rows' => 3, 'placeholder' => 'WhatsApp группасын жаратыңыз және сол группаның шақыру сілтемесін осында салыңыз!'])->label(false) ?>
 
-    <?= $form->field($model, 'money')->textarea(['rows' => 3, 'placeholder' => 'Қанша ақша бере аласыз? (Ең азы 100 тг!)'])->label(false) ?>
+    <?= $form->field($model, 'money')->input('number', [
+        'placeholder' => 'Қанша ақша бере аласыз? (Ең азы 100 тг!)',
+        'min' => 100,
+        'step' => 100,
+        'class' => 'form-control'
+
+    ])->label(false) ?>
+
 
     <!-- Hidden coordinates input -->
     <?= $form->field($model, 'address_coords')->hiddenInput()->label(false) ?>

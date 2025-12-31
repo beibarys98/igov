@@ -7,13 +7,20 @@ $params = array_merge(
 );
 
 return [
-    'timezone' => 'Asia/Almaty',
-
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'locale' => 'kk-KZ',   // Kazakh
+            'defaultTimeZone' => 'Asia/Almaty', // optional: adjust your timezone
+            'dateFormat' => 'php:d/m/Y',   // <-- dd/mm/yyyy
+            'datetimeFormat' => 'php:d/m/Y H:i',
+            'timeFormat' => 'php:H:i:s',
+        ],
+
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],

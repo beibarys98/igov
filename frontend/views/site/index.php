@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use common\helpers\DateHelper;
 
 /** @var yii\web\View $this */
 
@@ -27,9 +28,21 @@ $this->title = 'iGOV';
                         <p class="card-text text-muted post-desc">
                             <?= Html::encode($post->desc) ?>
                         </p>
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted" style="font-size: 0.8rem;">
+                                <?= DateHelper::relativeTimeKk($post->created_at) ?>
+                            </small>
+                            <small class="text-muted" style="font-size: 0.8rem;">
+                                <?= Yii::$app->formatter->asDatetime($post->created_at) ?>
+                            </small>
+
+                        </div>
+
+
+
                     </div>
 
-                    <hr class="mx-3">
+                    <hr class="mx-3 mt-0">
 
                     <!-- Location + Money -->
                     <?php

@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap5\ActiveForm;
+use common\helpers\DateHelper;
 
 /** @var yii\web\View $this */
 /** @var common\models\Post $model */
@@ -23,9 +23,18 @@ $this->title = 'iGOV';
             <p class="card-text text-muted">
                 <?= Html::encode($model->desc) ?>
             </p>
+            <div class="d-flex justify-content-between">
+                <small class="text-muted" style="font-size: 0.8rem;">
+                    <?= DateHelper::relativeTimeKk($model->created_at) ?>
+                </small>
+                <small class="text-muted" style="font-size: 0.8rem;">
+                    <?= Yii::$app->formatter->asDatetime($model->created_at) ?>
+                </small>
+
+            </div>
         </div>
 
-        <hr class="mx-3">
+        <hr class="mx-3 mt-0">
 
         <!-- Location & Money -->
         <div class="d-flex gap-2 mx-3">
