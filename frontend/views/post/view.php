@@ -33,13 +33,13 @@ $this->title = 'iGOV';
                 class="btn btn-outline-danger btn-sm flex-fill"
                 data-bs-toggle="modal"
                 data-bs-target="#mapModal">
-                📍 Мекен - жайы
+                📍<br>Мекен - жайы
             </button>
 
 
 
             <button class="btn btn-outline-success btn-sm flex-fill">
-                💵 ₸<?= number_format($model->money, 0, '.', ' ') ?> жиналды
+                💵 ₸<?= number_format($model->money, 0, '.', ' ') ?><br>жиналды
             </button>
         </div>
 
@@ -51,13 +51,13 @@ $this->title = 'iGOV';
                 href="<?= Html::encode($model->whatsapp_group) ?>"
                 target="_blank"
                 class="btn btn-outline-warning flex-fill">
-                ✋ Мен жасаймын!
+                ✋<br>Мен жасаймын!
             </a>
 
             <a
                 href="<?= \yii\helpers\Url::to(['post/donate', 'id' => $model->id]) ?>"
                 class="btn btn-outline-success flex-fill">
-                💵 Қолдау
+                💵<br>Қолдау
             </a>
 
 
@@ -95,7 +95,7 @@ $this->title = 'iGOV';
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">Мекен-жайы</h5>
+                <h5 class="modal-title">Мекен - жайы</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
