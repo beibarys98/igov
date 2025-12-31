@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = 'iGOV';
 ?>
-<div class="d-flex justify-content-center align-items-center vh-90 mt-3">
+<div class="d-flex justify-content-center align-items-center vh-80 mt-3">
 
     <?= $this->render('_form', [
         'model' => $model,

@@ -8,12 +8,11 @@ use yii\bootstrap5\ActiveForm;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="card p-3" style="max-width: 25rem; height: 90vh;">
+<div class="card p-3" style="max-width: 25rem;">
 
     <?php $form = ActiveForm::begin([
         'options' => ['enctype' => 'multipart/form-data']
     ]); ?>
-
 
     <!-- Hidden File Input -->
     <?= $form->field($model, 'file')->fileInput([

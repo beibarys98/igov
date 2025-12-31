@@ -5,11 +5,12 @@ use yii\helpers\Html;
 
 /** @var common\models\Post $post */
 /** @var common\models\Donation $donation */
+
+$this->title = 'iGOV';
 ?>
 
-<div class="d-flex justify-content-center align-items-center vh-90 mt-3">
+<div class="d-flex justify-content-center align-items-center vh-80 mt-3">
     <div class="card p-3" style="width: 25rem;">
-        <h3>💵 Қолдау </h3>
 
         <?php $form = ActiveForm::begin(); ?>
 

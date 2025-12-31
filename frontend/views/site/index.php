@@ -7,8 +7,8 @@ use yii\helpers\Html;
 $this->title = 'iGOV';
 ?>
 
-<div class="d-flex justify-content-center align-items-center vh-90 mt-3">
-    <div class="card p-3" style="max-width: 25rem; height: 90vh;">
+<div class="d-flex justify-content-center align-items-center vh-80 mt-3">
+    <div class="card p-3" style="max-width: 25rem; height: 80vh;">
 
         <!-- Scrollable posts container -->
         <div class="overflow-auto">
@@ -42,7 +42,7 @@ $this->title = 'iGOV';
                             class="btn btn-outline-danger btn-sm flex-fill"
                             data-bs-toggle="modal"
                             data-bs-target="#<?= $modalId ?>">
-                            📍 Мекен-жайы
+                            📍 Мекен - жайы
                         </button>
 
                         <!-- Map Modal -->
@@ -98,8 +98,7 @@ $this->title = 'iGOV';
                         </a>
 
                         <a
-                            href="<?= Html::encode($post->whatsapp_group) ?>"
-                            target="_blank"
+                            href="<?= \yii\helpers\Url::to(['post/donate', 'id' => $post->id]) ?>"
                             class="btn btn-outline-success flex-fill">
                             💵 Қолдау
                         </a>
