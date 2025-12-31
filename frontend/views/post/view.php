@@ -45,7 +45,7 @@ $this->title = 'iGOV';
             </button>
             <!-- Donators Modal -->
             <div class="modal fade" id="donatorsModal<?= $model->id ?>" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable mx-auto" style="width: 25rem; max-width: 100%;">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable mx-auto" style="width: 21rem; max-width: 100%;">
                     <div class="modal-content">
 
                         <div class="modal-header">
