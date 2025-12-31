@@ -34,7 +34,7 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['file', 'required'],
+            ['file', 'required', 'message' => 'Сурет жүктеңіз!'],
             ['file', 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
             [['address_coords', 'whatsapp_group'], 'default', 'value' => null],
             [['desc', 'whatsapp_group', 'money'], 'required', 'message' => 'Толтырыңыз!'],

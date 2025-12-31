@@ -9,7 +9,7 @@ use yii\helpers\Html;
 $this->title = 'iGOV';
 ?>
 
-<div class="d-flex justify-content-center align-items-center vh-80 mt-3">
+<div class="d-flex justify-content-center align-items-center vh-100">
     <div class="card p-3" style="width: 25rem;">
 
         <?php $form = ActiveForm::begin(); ?>
@@ -19,7 +19,7 @@ $this->title = 'iGOV';
         ])->label(false) ?>
 
         <?= $form->field($donation, 'amount')->input('number', [
-            'placeholder' => 'Қанша беруге дайынсыз?',
+            'placeholder' => 'Қанша ақша бере аласыз? (Ең азы 100 тг!)',
             'min' => 1
         ])->label(false) ?>
 
@@ -30,5 +30,6 @@ $this->title = 'iGOV';
         </div>
 
         <?php ActiveForm::end(); ?>
+
     </div>
 </div>

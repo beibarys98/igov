@@ -24,7 +24,7 @@ use yii\bootstrap5\ActiveForm;
     <div class="text-center">
         <label for="file-input" style="cursor:pointer;">
             <img id="file-preview" src="/camera.png" class="p-3" alt="Upload Image"
-                style="max-width:80%; object-fit:cover; border:1px solid #ccc; border-radius:10px;">
+                style="max-width:50%; object-fit:cover; border:1px solid #ccc; border-radius:10px;">
             <br>
             <span id="file-text" class="text-muted">Сурет жүктеңіз!</span>
             <br><br>
@@ -51,7 +51,7 @@ use yii\bootstrap5\ActiveForm;
 
     <?= $form->field($model, 'whatsapp_group')->textarea(['rows' => 3, 'placeholder' => 'WhatsApp группасын жаратыңыз және сол группаның шақыру сілтемесін осында салыңыз!'])->label(false) ?>
 
-    <?= $form->field($model, 'money')->textInput(['placeholder' => 'Қанша ақша бере аласыз? (Ең азы 100)'])->label(false) ?>
+    <?= $form->field($model, 'money')->textarea(['rows' => 3, 'placeholder' => 'Қанша ақша бере аласыз? (Ең азы 100 тг!)'])->label(false) ?>
 
     <!-- Hidden coordinates input -->
     <?= $form->field($model, 'address_coords')->hiddenInput()->label(false) ?>
