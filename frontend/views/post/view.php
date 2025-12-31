@@ -8,7 +8,7 @@ use yii\bootstrap5\ActiveForm;
 
 $this->title = 'iGOV';
 ?>
-<div class="d-flex justify-content-center align-items-center vh-80 mt-3">
+<div class="d-flex justify-content-center align-items-center vh-100 mt-3">
 
     <div class="card p-3" style="width: 25rem;">
 
