@@ -28,7 +28,7 @@ $this->title = 'iGOV';
                         </p>
                     </div>
 
-                    <hr>
+                    <hr class="mx-3">
 
                     <!-- Location + Money -->
                     <?php
@@ -82,11 +82,11 @@ $this->title = 'iGOV';
                         </script>
 
                         <button class="btn btn-outline-success btn-sm flex-fill">
-                            💵 ₸<?= number_format($post->money, 0, '.', ' ') ?> жиналды
+                            💰 ₸<?= number_format($post->money, 0, '.', ' ') ?> жиналды
                         </button>
                     </div>
 
-                    <hr>
+                    <hr class="mx-3">
 
                     <!-- Action buttons -->
                     <div class="d-flex gap-2 mb-1 mx-3">
@@ -132,8 +132,11 @@ $this->title = 'iGOV';
 
         <!-- Floating button INSIDE the card -->
         <div class="position-absolute bottom-0 end-0 m-4">
-            <button class="btn btn-primary rounded-circle" style="width: 50px; height: 50px; background-image: url('/plus.png'); background-size: cover; border: none;">
-            </button>
+            <a href="/post/create"
+                class="btn btn-primary rounded-circle"
+                style="width: 50px; height: 50px; background-image: url('/plus.png'); background-size: cover; border: none; display: inline-block;">
+            </a>
+
         </div>
     </div>
 </div>
