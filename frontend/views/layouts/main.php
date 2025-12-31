@@ -42,13 +42,13 @@ AppAsset::register($this);
             <?= Alert::widget([
                 'options' => [
                     'class' => 'mt-3 position-fixed top-0 start-50 translate-middle-x',
-                    'style' => 'width: 20rem; z-index: 1050;', // custom width & float on top
+                    'style' => 'width: 21rem; z-index: 1050;', // custom width & float on top
                 ],
                 'closeButton' => false, // remove 'x' button
             ]); ?>
             <script>
                 setTimeout(function() {
-                    const alert = document.querySelector('.alert-info');
+                    const alert = document.querySelector('.alert');
                     if (alert) {
                         alert.classList.add('fade');
                         setTimeout(() => alert.remove(), 500); // remove after fade
