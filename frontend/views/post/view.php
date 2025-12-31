@@ -39,7 +39,7 @@ $this->title = 'iGOV';
 
 
             <button class="btn btn-outline-success btn-sm flex-fill">
-                💵 ₸<?= number_format($model->money, 0, '.', ' ') ?><br>жиналды
+                ₸<?= number_format($model->money, 0, '.', ' ') ?><br>жиналды
             </button>
         </div>
 
