@@ -7,8 +7,8 @@ use yii\helpers\Html;
 $this->title = 'iGOV';
 ?>
 
-<div class="d-flex justify-content-center align-items-center vh-100 mt-3">
-    <div class="card p-3" style="max-width: 25rem; height: 100vh;">
+<div class="d-flex justify-content-center align-items-center vh-90 mt-3">
+    <div class="card p-3" style="max-width: 25rem; height: 90vh;">
 
         <!-- Scrollable posts container -->
         <div class="overflow-auto">

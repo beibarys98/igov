@@ -8,7 +8,7 @@ use yii\bootstrap5\ActiveForm;
 
 $this->title = 'iGOV';
 ?>
-<div class="d-flex justify-content-center align-items-center vh-100 mt-3">
+<div class="d-flex justify-content-center align-items-center vh-90 mt-3">
 
     <div class="card p-3" style="width: 25rem;">
 
@@ -25,7 +25,7 @@ $this->title = 'iGOV';
             </p>
         </div>
 
-        <hr>
+        <hr class="mx-3">
 
         <!-- Location & Money -->
         <div class="d-flex gap-2 mx-3">
@@ -43,7 +43,7 @@ $this->title = 'iGOV';
             </button>
         </div>
 
-        <hr>
+        <hr class="mx-3">
 
         <!-- Action buttons -->
         <div class="d-flex gap-2 mb-1 mx-3">
