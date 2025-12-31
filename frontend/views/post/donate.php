@@ -18,9 +18,9 @@ $this->title = 'iGOV';
             'placeholder' => 'WhatsApp нөміріңіз',
         ])->label(false) ?>
 
-        <?= $form->field($donation, 'amount')->input('number', [
-            'placeholder' => 'Қанша ақша бере аласыз? (Ең азы 100 тг!)',
-            'min' => 1
+        <?= $form->field($donation, 'amount')->textarea([
+            'rows' => 2,
+            'placeholder' => 'Қанша ақша бере аласыз? (Ең азы 100 тг!)'
         ])->label(false) ?>
 
         <?= $form->field($donation, 'post_id')->hiddenInput(['value' => $post->id])->label(false) ?>
