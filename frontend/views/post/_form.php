@@ -52,7 +52,7 @@ use yii\bootstrap5\ActiveForm;
     <?= $form->field($model, 'whatsapp_group')->textarea(['rows' => 3, 'placeholder' => 'WhatsApp группасын жаратыңыз және сол группаның шақыру сілтемесін осында салыңыз!'])->label(false) ?>
 
     <?= $form->field($model, 'money')->input('number', [
-        'placeholder' => 'Қанша ақша бере аласыз?\n(Ең азы 100 тг!)',
+        'placeholder' => 'Қанша ақша бере аласыз?',
         'min' => 100,
         'step' => 100,
         'class' => 'form-control'

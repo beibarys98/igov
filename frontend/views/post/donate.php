@@ -14,14 +14,17 @@ $this->title = 'iGOV';
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($donation, 'whatsapp_number')->textInput([
+        <?= $form->field($donation, 'whatsapp_number')->input('tel', [
             'placeholder' => 'WhatsApp нөміріңіз',
+            'pattern' => '[0-9+]*',  // allow digits and + sign
         ])->label(false) ?>
 
-        <?= $form->field($donation, 'amount')->textarea([
-            'rows' => 2,
-            'placeholder' => 'Қанша ақша бере аласыз? (Ең азы 100 тг!)'
+        <?= $form->field($donation, 'amount')->input('number', [
+            'placeholder' => 'Қанша ақша бере аласыз?',
+            'min' => 100,       // minimum amount
+            'step' => 100,      // increment step
         ])->label(false) ?>
+
 
         <?= $form->field($donation, 'post_id')->hiddenInput(['value' => $post->id])->label(false) ?>
 
