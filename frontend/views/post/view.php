@@ -38,9 +38,41 @@ $this->title = 'iGOV';
 
 
 
-            <button class="btn btn-outline-success btn-sm flex-fill">
+            <button class="btn btn-outline-success btn-sm flex-fill"
+                data-bs-toggle="modal"
+                data-bs-target="#donatorsModal<?= $model->id ?>">
                 ₸<?= number_format($model->money, 0, '.', ' ') ?><br>жиналды
             </button>
+            <!-- Donators Modal -->
+            <div class="modal fade" id="donatorsModal<?= $model->id ?>" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable mx-auto" style="width: 25rem; max-width: 100%;">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title">Демеушілер</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body" style="max-height: 60vh; overflow-y: auto;">
+
+                            <?php if (!empty($model->donations)): ?>
+                                <ul class="list-group list-group-flush">
+                                    <?php foreach ($model->donations as $donation): ?>
+                                        <li class="list-group-item d-flex justify-content-between">
+                                            <span><?= Html::encode($donation->whatsapp_number) ?></span>
+                                            <strong>₸<?= number_format($donation->amount, 0, '.', ' ') ?></strong>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else: ?>
+                                <div class="text-muted text-center">Әзірше демеуші жоқ!</div>
+                            <?php endif; ?>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
         <hr class="mx-3">

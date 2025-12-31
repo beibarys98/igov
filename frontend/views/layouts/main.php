@@ -39,7 +39,22 @@ AppAsset::register($this);
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
-            <?= Alert::widget() ?>
+            <?= Alert::widget([
+                'options' => [
+                    'class' => 'mt-3 position-fixed top-0 start-50 translate-middle-x',
+                    'style' => 'width: 25rem; z-index: 1050;', // custom width & float on top
+                ],
+                'closeButton' => false, // remove 'x' button
+            ]); ?>
+            <script>
+                setTimeout(function() {
+                    const alert = document.querySelector('.alert-info');
+                    if (alert) {
+                        alert.classList.add('fade');
+                        setTimeout(() => alert.remove(), 500); // remove after fade
+                    }
+                }, 3000);
+            </script>
             <?= $content ?>
         </div>
     </main>

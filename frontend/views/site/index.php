@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /** @var yii\web\View $this */
 
@@ -81,9 +82,42 @@ $this->title = 'iGOV';
                             });
                         </script>
 
-                        <button class="btn btn-outline-success btn-sm flex-fill">
+                        <button class="btn btn-outline-success btn-sm flex-fill"
+                            data-bs-toggle="modal"
+                            data-bs-target="#donatorsModal<?= $post->id ?>">
                             ₸<?= number_format($post->money, 0, '.', ' ') ?><br>жиналды
                         </button>
+                        <!-- Donators Modal -->
+                        <div class="modal fade" id="donatorsModal<?= $post->id ?>" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable mx-auto" style="width: 25rem; max-width: 100%;">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Демеушілер</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <div class="modal-body" style="max-height: 60vh; overflow-y: auto;">
+
+                                        <?php if (!empty($post->donations)): ?>
+                                            <ul class="list-group list-group-flush">
+                                                <?php foreach ($post->donations as $donation): ?>
+                                                    <li class="list-group-item d-flex justify-content-between">
+                                                        <span><?= Html::encode($donation->whatsapp_number) ?></span>
+                                                        <strong>₸<?= number_format($donation->amount, 0, '.', ' ') ?></strong>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        <?php else: ?>
+                                            <div class="text-muted text-center">Әзірше демеуші жоқ!</div>
+                                        <?php endif; ?>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <hr class="mx-3">
@@ -117,7 +151,7 @@ $this->title = 'iGOV';
                 <!-- Share function (unique per post) -->
                 <script>
                     function sharePost<?= $post->id ?>() {
-                        const url = "<?= Yii::$app->request->absoluteUrl ?>post/view?id=<?= $post->id ?>";
+                        const url = "<?= Url::to(['post/view', 'id' => $post->id], true) ?>";
                         window.open(
                             `https://wa.me/?text=${encodeURIComponent(url)}`,
                             '_blank'
@@ -132,10 +166,23 @@ $this->title = 'iGOV';
         <!-- Floating button INSIDE the card -->
         <div class="position-absolute bottom-0 end-0 m-4">
             <a href="/post/create"
-                class="btn btn-primary rounded-circle"
-                style="width: 50px; height: 50px; background-image: url('/plus.png'); background-size: cover; border: none; display: inline-block;">
+                class="btn btn-primary rounded-circle shadow"
+                style="width: 60px; height: 60px; background-image: url('/add-button.png'); background-size: cover; border: none; display: inline-block;">
+
             </a>
 
+        </div>
+
+        <?php
+        // Determine next sort
+        $nextSort = ($sort === 'money') ? 'latest' : 'money';
+        ?>
+
+        <div class="position-absolute bottom-0 start-0 m-4">
+            <a href="<?= \yii\helpers\Url::to(['site/index', 'sort' => $nextSort]) ?>"
+                class="btn btn-secondary rounded-circle shadow"
+                style="width: 60px; height: 60px; background-image: url('/filter.png'); background-size: cover; border: none; display: inline-block;">
+            </a>
         </div>
     </div>
 </div>

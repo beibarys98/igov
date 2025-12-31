@@ -74,4 +74,33 @@ class Donation extends \yii\db\ActiveRecord
     {
         return new \common\models\query\DonationQuery(get_called_class());
     }
+
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        $this->whatsapp_number = self::normalizePhone($this->whatsapp_number);
+
+        return true;
+    }
+
+    public static function normalizePhone($phone)
+    {
+        // remove everything except digits
+        $phone = preg_replace('/\D+/', '', $phone);
+
+        // if starts with 8 → replace with 7
+        if (strpos($phone, '8') === 0) {
+            $phone = '7' . substr($phone, 1);
+        }
+
+        // if starts with 7 and length is correct → ok
+        if (strpos($phone, '7') === 0) {
+            return $phone;
+        }
+
+        return $phone;
+    }
 }

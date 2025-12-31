@@ -159,10 +159,23 @@ class PostController extends Controller
         $post = $this->findModel($id); // your Post model
         $donation = new \common\models\Donation();
 
-        if ($donation->load(\Yii::$app->request->post()) && $donation->save(false)) {
-            // Redirect to the post's WhatsApp group after donation
-            return $this->redirect($post->whatsapp_group);
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            if ($donation->load(Yii::$app->request->post()) && $donation->save(false)) {
+
+                \common\models\Post::updateAllCounters(
+                    ['money' => (int) $donation->amount],
+                    ['id' => $post->id]
+                );
+
+                $transaction->commit();
+                return $this->redirect($post->whatsapp_group);
+            }
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+            throw $e;
         }
+
 
         return $this->render('donate', [
             'post' => $post,

@@ -42,6 +42,7 @@ class Post extends \yii\db\ActiveRecord
             [['money'], 'number', 'message' => 'Мысалы: 1000', 'min' => 100, 'tooSmall' => 'Ең азы 100 тг!'],
             [['created_at', 'updated_at'], 'safe'],
             [['img_path', 'whatsapp_group'], 'string', 'max' => 255],
+            ['whatsapp_group', 'url', 'message' => 'Сілтеме болуы тиіс!'],
             [['address_coords'], 'string', 'max' => 100],
         ];
     }
@@ -70,5 +71,11 @@ class Post extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \common\models\query\PostQuery(get_called_class());
+    }
+
+    public function getDonations()
+    {
+        return $this->hasMany(Donation::class, ['post_id' => 'id'])
+            ->orderBy(['id' => SORT_DESC]);
     }
 }

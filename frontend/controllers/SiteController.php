@@ -74,15 +74,21 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($sort = 'money')
     {
-        $posts = Post::find()
-            ->orderBy(['created_at' => SORT_DESC])
-            ->all();
+        $query = Post::find();
 
-        return $this->render('index', [
-            'posts' => $posts,
-        ]);
+        if ($sort === 'money') {
+            $query->orderBy(['money' => SORT_DESC]);
+            \Yii::$app->session->setFlash('success', 'Жиналған ақша бойынша сұрыпталды!');
+        } else { // latest
+            $query->orderBy(['id' => SORT_DESC]);
+            \Yii::$app->session->setFlash('info', 'Салыну уақыты бойынша сұрыпталды!');
+        }
+
+        $posts = $query->all();
+
+        return $this->render('index', compact('posts', 'sort'));
     }
 
 
