@@ -91,6 +91,20 @@ class SiteController extends Controller
         return $this->render('index', compact('posts', 'sort'));
     }
 
+    public function actionMap()
+    {
+        $locations = Post::find()
+            ->where(['not', ['address_coords' => null]])
+            ->andWhere(['!=', 'address_coords', ''])
+            ->all();
+
+        return $this->render('map', [
+            'locations' => $locations,
+        ]);
+    }
+
+
+
 
     /**
      * Logs in a user.

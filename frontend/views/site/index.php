@@ -176,26 +176,36 @@ $this->title = 'iGOV';
 
         </div>
 
-        <!-- Floating button INSIDE the card -->
-        <div class="position-absolute bottom-0 end-0 m-4">
-            <a href="/post/create"
-                class="btn btn-primary rounded-circle shadow"
-                style="width: 60px; height: 60px; background-image: url('/add-button.png'); background-size: cover; border: none; display: inline-block;">
-
-            </a>
-
-        </div>
-
         <?php
         // Determine next sort
         $nextSort = ($sort === 'money') ? 'latest' : 'money';
         ?>
 
-        <div class="position-absolute bottom-0 start-0 m-4">
+        <!-- Bottom floating buttons container -->
+        <div class="position-absolute bottom-0 start-0 w-100 d-flex justify-content-between align-items-center px-4 pb-4">
+
+            <!-- Left button -->
             <a href="<?= \yii\helpers\Url::to(['site/index', 'sort' => $nextSort]) ?>"
-                class="btn btn-secondary rounded-circle shadow"
-                style="width: 60px; height: 60px; background-image: url('/filter.png'); background-size: cover; border: none; display: inline-block;">
+                class="btn btn-secondary rounded-circle shadow d-flex align-items-center justify-content-center"
+                style="width: 60px; height: 60px; border: none;">
+                <img src="/filter.png" style="width: 100%; height: 70%;" alt="Filter">
             </a>
+
+            <!-- Center button (previously right one) -->
+            <a href="/post/create"
+                class="btn btn-success rounded-circle shadow d-flex align-items-center justify-content-center"
+                style="width: 60px; height: 60px; border: none;">
+                <img src="/add-button.png" style="width: 100%; height: 75%;" alt="Add">
+            </a>
+
+            <!-- Right button (NEW third button) -->
+            <a href="/site/map"
+                class="btn btn-primary rounded-circle shadow d-flex align-items-center justify-content-center"
+                style="width: 60px; height: 60px; border: none;">
+                <img src="/map.png" style="width: 100%; height: 70%;" alt="Third">
+            </a>
+
         </div>
+
     </div>
 </div>
