@@ -2,6 +2,8 @@
 
 use yii\helpers\Json;
 
+$this->title = 'iGOV';
+
 $points = [];
 
 foreach ($locations as $post) {
@@ -18,7 +20,7 @@ foreach ($locations as $post) {
     $points[] = [
         'lat' => (float)$lat,
         'lng' => (float)$lng,
-        'title' => isset($post->desc) ? mb_substr($post->desc, 0, 16) : '',
+        'image' => $post->img_path ?? '', // store image URL
         'id' => $post->id,
     ];
 }
@@ -39,10 +41,19 @@ foreach ($locations as $post) {
     const bounds = [];
 
     locations.forEach(loc => {
+        let popupContent = '';
+        if (loc.image) {
+            popupContent = `<a href="/post/view?id=${loc.id}" target="_blank">
+                    <img src="${loc.image}" style="width:120px; height:auto; border-radius:8px;">
+                </a>`;
+
+        } else if (loc.title) {
+            popupContent = loc.title; // fallback text
+        }
+
         const marker = L.marker([loc.lat, loc.lng])
             .addTo(map)
-            .bindPopup(loc.title);
-
+            .bindPopup(popupContent);
         bounds.push([loc.lat, loc.lng]);
     });
 
